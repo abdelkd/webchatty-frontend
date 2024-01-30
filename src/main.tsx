@@ -4,6 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux'
+import '../env'
 
 import Root from './routes/root';
 import { store } from './services/state/store';
