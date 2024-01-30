@@ -1,9 +1,10 @@
 import { io } from 'socket.io-client'
+import { env } from '../env'
 
-// const URL = process.env.NODE_ENV === 'production' 
-//   ? process.env.SOCKET_URL as string
-//   : 'http://localhost:3000';
+const URL = process.env.NODE_ENV === 'production' 
+  ? env.PUBLIC_API_URL
+  : 'http://localhost:3000';
 
-export const socket = io("https://webchatty.onrender.com/", {
+export const socket = io(URL, {
   autoConnect: false,
 })
