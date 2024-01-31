@@ -10,7 +10,9 @@ const ChatStatus = () => {
   })
 
   return (
-    <div className={statusStyle}></div>
+    <div className="w-8 h-8">
+      <div className={statusStyle}></div>
+    </div>
   )
 }
 
