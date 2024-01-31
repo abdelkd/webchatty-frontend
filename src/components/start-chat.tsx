@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { socket } from "../socket"
 import { useAppDispatch } from "../hooks/redux-hooks"
-import { addNewMessage, setRoomId, turnChatOff, turnChatOn } from "../services/state/chatReducer"
+import { addNewMessage, clearMessages, setRoomId, turnChatOff, turnChatOn } from "../services/state/chatReducer"
 import clsx from "clsx"
 
 const StartChat = () => {
@@ -17,6 +17,7 @@ const StartChat = () => {
       return
     }
 
+    dispatch(clearMessages())
     setIsLoading(true)
     socket.connect()
     socket.emit("findMatch", "friend");

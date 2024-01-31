@@ -41,10 +41,13 @@ const chatSlice = createSlice({
       }
 
       state.messages.unshift(newMessage)
+    },
+    clearMessages: (state) => {
+      state.messages = []
     }
   },
 })
 
-export const { setMessage, addNewMessage, setRoomId, turnChatOn, turnChatOff } = chatSlice.actions
+export const { setMessage, addNewMessage, clearMessages, setRoomId, turnChatOn, turnChatOff } = chatSlice.actions
 
 export default chatSlice.reducer
