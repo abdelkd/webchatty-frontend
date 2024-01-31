@@ -1,6 +1,6 @@
-import { ChangeEvent, FormEventHandler } from "react"
+import { ChangeEvent, FormEventHandler, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../hooks/redux-hooks"
-import { setMessage } from "../services/state/chatReducer"
+import { setMessage, addNewMessage, turnChatOff } from "../services/state/chatReducer"
 import { socket } from "../socket"
 
 const ChatForm = () => {
@@ -8,6 +8,23 @@ const ChatForm = () => {
   const roomId = useAppSelector(state => state.chat.roomId)
 
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const onLeaveRoom = () => {
+      dispatch(addNewMessage({
+        text: "user disconnected",
+        authorId: "server",
+        timeStamp: new Date().toTimeString(),
+      }))
+      dispatch(turnChatOff())
+    }
+
+    socket.on('leaveRoom', onLeaveRoom)
+
+    return () => {
+      socket.off('leaveRoom', onLeaveRoom)
+    }
+  }, [])
 
   const authorId = socket.id
 
