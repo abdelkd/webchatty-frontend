@@ -7,10 +7,6 @@ import { Provider } from 'react-redux'
 
 import Root from './routes/root';
 import { store } from './services/state/store';
-import { env } from '../env'
-
-console.log(import.meta.env.VITE_API_URL)
-console.log(env.VITE_API_URL)
 
 const router = createBrowserRouter([
   {
